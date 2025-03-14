@@ -1,14 +1,17 @@
-import Passcode from './Passcode';
-import Question from './Question';
-import Timer from './Timer';
-import Recap from './Recap';
-import Letter from './Letter';
-import Closing from './Closing';
-import Music from './Music';
-import Picture from './Picture';
-import Message from './Message';
-import Carousel from './Carousel';
+// Component imports
+import Passcode from './Passcode'
+import Question from './Question'
+import Timer from './Timer'
+import Recap from './Recap'
+import Letter from './Letter'
+import Closing from './Closing'
+import Music from './Music'
+import Picture from './Picture'
+import Message from './Message'
+import Carousel from './Carousel'
+import Birthday from './Birthday'
 
+// Component exports
 export {
   Passcode,
   Question,
@@ -19,5 +22,6 @@ export {
   Picture,
   Music,
   Carousel,
-  Message
+  Message,
+  Birthday
 }
