@@ -17,7 +17,7 @@ function Birthday() {
 
     // Constants
     const correctMessage = "Selamat ulang tahun yang ke 18 tahun ya, ga kerasa 2 tahun lagi kepala dua hahahaha, aku ga banyak si buat kata kata yang bakal diucapin disini, mungkin udah ada di video hehe, dan intinya aku sangat berterima kasih kamu masih selalu ada buat aku, semoga semua yang kamu harapkan dapat tercapai, amiin, last I love You Always Nadya";
-    const youtubeLink = "https://www.youtube.com/watch?v=your_video_id";
+    const youtubeLink = "https://www.youtube.com/watch?v=wafaoIKOEFk";
     const knownCiphertext = "8aWiG0uIrN5bFSNDC1YKiMChwo+Bl+ULw/JB00ne1K33Aypp2tGGjAiIYW308UksPg01Lu6YzAcviEUuIdMrcD1xWbXKb5Mbo8f/WpFFj0T/Xm+cSydxr16YahiWe5eevIBiKkfQd2Yun5VE4INebd1yXJR2rCJAiSv4pVx/8lN9mQnw8zFOWvVyRkImiBQ7/qL/1wZ8CJN0DXLJjDYmuH6hjWjjI22kF9pDdnQCXqScEmE8OrJjM3tNaEk8u0SZ8qJ38wOIlPne4PJuq9eUUTK7vI1wg3SOivzhNuw4J97go7x9Zk1Js1PsLc/ij63ux9NKpU9BsPAoCr1q/fNpl5bcbAxQ7/hos8ylmCZEy64mItD377rOhKkNXfpuj1Xtgmj8Ydb4ixdTYkyogM6VA+ZP49zLRuYDMomiFh5JAlLZyXborJNFEzso3SK1EUmLgjzH4955RIUCj2BGazmQWObVsagWjrWwcqkAA7D6IyA=";
     const knownKey = "nadyaloveyounady";
 
