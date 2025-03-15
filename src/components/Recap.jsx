@@ -1,12 +1,12 @@
 import 'react'
-import { ArrowRight, ArrowLeft, Message, Image, Music, Heart, } from './icons'
+import { ArrowRight, ArrowLeft, Message, Image, Music, Heart, Birthday } from './icons'
 import { useNavigate } from 'react-router-dom'
 import '../index.css'
+
 function Recap() {
   const navigate = useNavigate();
 
   return (
-
       <div className="min-h-screen bg-black/20 flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-sm sm:max-w-md text-center">
           <h1 className="text-2xl sm:text-4xl font-bold mb-8 text-white drop-shadow-lg">
@@ -18,7 +18,7 @@ function Recap() {
               { Icon: Message, label: 'Messages', path: '/recap/message' },
               { Icon: Image, label: 'Pictures', path: '/recap/pictures' },
               { Icon: Music, label: 'Music', path: '/recap/music' },
-              { Icon: Message, label: 'Birthday', path: '/recap/birthday' },
+              { Icon: Birthday, label: 'Birthday', path: '/recap/birthday' },
             ].map(({ Icon, label, path }) => (
                 <div key={label} className="flex flex-col items-center">
                   <button
@@ -53,7 +53,6 @@ function Recap() {
           </div>
         </div>
       </div>
-
   )
 }
 

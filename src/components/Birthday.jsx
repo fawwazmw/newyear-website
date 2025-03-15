@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { ArrowLeft, Heart } from './icons'
+import React, { useState, useRef } from 'react'
+import { ArrowLeft, Heart, Copy, Check } from './icons'
 import { useNavigate } from 'react-router-dom'
 import '../index.css'
 import CryptoJS from 'crypto-js'
@@ -7,13 +7,14 @@ import CryptoJS from 'crypto-js'
 function Birthday() {
     // Hooks
     const navigate = useNavigate();
+    const keyInputRef = useRef(null);
+    const messageInputRef = useRef(null);
 
     // State management
-    const [encryptedMessage, setEncryptedMessage] = useState('');
-    const [key, setKey] = useState('');
     const [decryptedMessage, setDecryptedMessage] = useState('');
     const [isDecrypted, setIsDecrypted] = useState(false);
     const [error, setError] = useState('');
+    const [copied, setCopied] = useState(false);
 
     // Constants
     const correctMessage = "Selamat ulang tahun yang ke 18 tahun ya, ga kerasa 2 tahun lagi kepala dua hahahaha, aku ga banyak si buat kata kata yang bakal diucapin disini, mungkin udah ada di video hehe, dan intinya aku sangat berterima kasih kamu masih selalu ada buat aku, semoga semua yang kamu harapkan dapat tercapai, amiin, last I love You Always Nadya";
@@ -22,9 +23,32 @@ function Birthday() {
     const knownKey = "nadyaloveyounady";
 
     /**
+     * Copy encrypted text to clipboard
+     */
+    const handleCopyText = () => {
+        navigator.clipboard.writeText(knownCiphertext).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    };
+
+    /**
+     * Prefill encrypted message field with known ciphertext
+     */
+    const handlePrefill = () => {
+        if (messageInputRef.current) {
+            messageInputRef.current.value = knownCiphertext;
+        }
+    };
+
+    /**
      * Handle decryption of message
      */
     const handleDecrypt = () => {
+        // Get values directly from uncontrolled inputs
+        const key = keyInputRef.current ? keyInputRef.current.value : '';
+        const encryptedMessage = messageInputRef.current ? messageInputRef.current.value : '';
+
         // Validation
         if (!key) {
             setError('Please enter the secret key');
@@ -91,24 +115,39 @@ function Birthday() {
 
                 <div className="w-full mb-4">
                     <label className="block text-white text-sm mb-2">Encrypted Message:</label>
-                    <textarea
-                        className="w-full px-4 py-2 bg-white/20 border border-white/50 rounded-lg text-white mb-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
-                        placeholder="Paste encrypted message here..."
-                        rows="4"
-                        value={encryptedMessage}
-                        onChange={(e) => setEncryptedMessage(e.target.value)}
-                    />
+                    <div className="relative">
+                        <textarea
+                            ref={messageInputRef}
+                            className="w-full px-4 py-2 bg-white/20 border border-white/50 rounded-lg text-white mb-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                            placeholder="Paste encrypted message here..."
+                            rows="4"
+                            defaultValue=""
+                        />
+                        <button
+                            className="absolute top-2 right-2 p-2 bg-white/30 rounded-md hover:bg-white/40 transition-all"
+                            onClick={handleCopyText}
+                            title="Copy encrypted message"
+                        >
+                            {copied ? <Check size={16} color="white" /> : <Copy size={16} color="white" />}
+                        </button>
+                    </div>
+                    <button
+                        className="text-sm text-pink-300 hover:text-pink-400 transition-all mt-1"
+                        onClick={handlePrefill}
+                    >
+                        Use default message
+                    </button>
                 </div>
 
                 <div className="w-full mb-4">
                     <label className="block text-white text-sm mb-2">Secret Key:</label>
                     <input
                         type="text"
+                        ref={keyInputRef}
                         className="w-full px-4 py-2 bg-white/20 border border-white/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-400"
                         placeholder="Enter secret key..."
-                        value={key}
-                        onChange={(e) => setKey(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && handleDecrypt()}
+                        defaultValue=""
+                        onKeyDown={(e) => e.key === 'Enter' && handleDecrypt()}
                     />
                 </div>
 
